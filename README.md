@@ -1,2 +1,1 @@
-# Flappy-Bird-Clone
-
+# This project was developed as a personal learning exercise in Godot. It is currently unfinished, contains no code comments, and not all features are fully functional. Additionally, a sprite labeled “Shaqqy Bird” was included as a lighthearted, non-commercial mod at a sibling's request. This sprite is not used in the playable version. All rights to likenesses remain with their respective owners.
