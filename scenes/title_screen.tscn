@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3 uid="uid://c1ie16jo0brra"]
+
+[ext_resource type="Script" path="res://scenes/title_screen.gd" id="1_n4ces"]
+[ext_resource type="Texture2D" uid="uid://bm5asoswnx2le" path="res://assets/background-day.png" id="1_piqpr"]
+[ext_resource type="Script" path="res://background_day.gd" id="2_0ewly"]
+[ext_resource type="PackedScene" uid="uid://b5b1r60g7btpu" path="res://objects/node_2d.tscn" id="3_snojp"]
+[ext_resource type="Script" path="res://objects/Bird (TitleScreen).gd" id="4_ovfq0"]
+[ext_resource type="Texture2D" uid="uid://dy5t2lytrea43" path="res://assets/message1.png" id="5_phpqm"]
+[ext_resource type="Texture2D" uid="uid://8uft4giijp4s" path="res://assets/base.png" id="6_je32o"]
+[ext_resource type="Script" path="res://objects/base.gd" id="7_4qthw"]
+[ext_resource type="Script" path="res://objects/base_2.gd" id="8_7rg4h"]
+[ext_resource type="Texture2D" uid="uid://chjgl0dws3qpp" path="res://assets/Flappy Bird Sprites (2).png" id="9_twrhk"]
+[ext_resource type="Texture2D" uid="uid://cptxeioj31ks8" path="res://assets/Bird select.png" id="11_blmij"]
+
+[node name="TitleScreen" type="Camera2D"]
+script = ExtResource("1_n4ces")
+
+[node name="Background-day" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_piqpr")
+script = ExtResource("2_0ewly")
+
+[node name="Bird (TitleScreen)" parent="." instance=ExtResource("3_snojp")]
+position = Vector2(0, -25)
+script = ExtResource("4_ovfq0")
+
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(0, -150)
+scale = Vector2(2, 2)
+texture = ExtResource("5_phpqm")
+vframes = 5
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 75.0
+offset_right = 40.0
+offset_bottom = 115.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Base" type="Sprite2D" parent="Control"]
+position = Vector2(96, 648)
+scale = Vector2(4, 4)
+texture = ExtResource("6_je32o")
+script = ExtResource("7_4qthw")
+
+[node name="Base2" type="Sprite2D" parent="Control"]
+position = Vector2(1350, 648)
+scale = Vector2(4, 4)
+texture = ExtResource("6_je32o")
+script = ExtResource("8_7rg4h")
+
+[node name="play_button" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 104.0
+offset_right = 144.0
+offset_bottom = 40.0
+scale = Vector2(4, 4)
+
+[node name="TextureButton (title)" type="TextureButton" parent="play_button"]
+layout_mode = 0
+offset_left = -55.25
+offset_top = 11.75
+offset_right = 4.75
+offset_bottom = 51.75
+texture_normal = ExtResource("9_twrhk")
+
+[node name="Character_select" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 104.0
+offset_top = 350.0
+offset_right = 144.0
+offset_bottom = 390.0
+scale = Vector2(3, 3)
+
+[node name="TextureButton" type="TextureButton" parent="Character_select"]
+layout_mode = 0
+offset_top = 11.75
+offset_right = 60.0
+offset_bottom = 51.75
+texture_normal = ExtResource("11_blmij")
+
+[connection signal="pressed" from="play_button/TextureButton (title)" to="." method="_on_texture_button_title_pressed"]
+[connection signal="pressed" from="Character_select/TextureButton" to="." method="_on_texture_button_pressed"]

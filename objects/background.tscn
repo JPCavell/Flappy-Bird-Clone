@@ -1,0 +1,344 @@
+[gd_scene load_steps=37 format=3 uid="uid://csvsex37pimrg"]
+
+[ext_resource type="Script" path="res://background.gd" id="1_iy03q"]
+[ext_resource type="Texture2D" uid="uid://bm5asoswnx2le" path="res://assets/background-day.png" id="2_6vhyh"]
+[ext_resource type="Script" path="res://background_day.gd" id="3_qp1gn"]
+[ext_resource type="Texture2D" uid="uid://bpas0pg4ofmyb" path="res://assets/pipe-green.png" id="5_l66jt"]
+[ext_resource type="Script" path="res://objects/bottom.gd" id="5_rcji8"]
+[ext_resource type="Texture2D" uid="uid://8uft4giijp4s" path="res://assets/base.png" id="6_tkx8o"]
+[ext_resource type="Script" path="res://objects/bottom_2.gd" id="7_55kqi"]
+[ext_resource type="Script" path="res://objects/base.gd" id="7_s8t76"]
+[ext_resource type="Script" path="res://objects/top.gd" id="8_00phw"]
+[ext_resource type="Script" path="res://objects/base_2.gd" id="8_y5l8n"]
+[ext_resource type="Script" path="res://objects/top_2.gd" id="9_xrxqg"]
+[ext_resource type="AudioStream" uid="uid://cpa4vsnjunxx8" path="res://Sound Efects/wing.wav" id="10_xjuhe"]
+[ext_resource type="AudioStream" uid="uid://m4nwsehl0lbu" path="res://Sound Efects/hit.wav" id="11_8ebi1"]
+[ext_resource type="AudioStream" uid="uid://c1n82gop5n0jl" path="res://Sound Efects/die.wav" id="12_svoja"]
+[ext_resource type="AudioStream" uid="uid://b37l6tpm5cuaq" path="res://Sound Efects/swoosh.wav" id="13_6nso7"]
+[ext_resource type="PackedScene" uid="uid://b5b1r60g7btpu" path="res://objects/node_2d.tscn" id="13_7kcok"]
+[ext_resource type="Script" path="res://objects/ground.gd" id="14_1j3a0"]
+[ext_resource type="Texture2D" uid="uid://dh1lhiy5frdrm" path="res://assets/gameover.png" id="14_q4p7w"]
+[ext_resource type="FontFile" uid="uid://b8ioxftehjdih" path="res://assets/flappy-bird-font.ttf" id="15_xf2pp"]
+[ext_resource type="Script" path="res://objects/label.gd" id="16_mpfno"]
+[ext_resource type="AudioStream" uid="uid://b8ncwl7rvhvjv" path="res://Sound Efects/point.wav" id="17_i2l5t"]
+[ext_resource type="Texture2D" uid="uid://btbs513moaptv" path="res://assets/message.png" id="17_t7ep4"]
+[ext_resource type="Texture2D" uid="uid://bisujlokefjac" path="res://assets/Flappy Bird Sprites (1).png" id="18_208k2"]
+[ext_resource type="Script" path="res://objects/score.gd" id="19_gqxxx"]
+[ext_resource type="Texture2D" uid="uid://chjgl0dws3qpp" path="res://assets/Flappy Bird Sprites (2).png" id="20_shb1h"]
+[ext_resource type="Script" path="res://objects/best_score.gd" id="21_hxvwh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5gum"]
+size = Vector2(52, 320.5)
+
+[sub_resource type="Animation" id="Animation_f0gpn"]
+resource_name = "Fade_in"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 0.65, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -240), Vector2(0, -275), Vector2(0, -256)]
+}
+
+[sub_resource type="Animation" id="Animation_5ta0c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -275)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xwlt0"]
+_data = {
+"Fade_in": SubResource("Animation_f0gpn"),
+"RESET": SubResource("Animation_5ta0c")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_7j76m"]
+font = ExtResource("15_xf2pp")
+font_size = 125
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8bg2e"]
+size = Vector2(650, 65.5)
+
+[sub_resource type="Animation" id="Animation_6x1dm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 750)]
+}
+
+[sub_resource type="Animation" id="Animation_i1klb"]
+resource_name = "slide_in"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.75, 1.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 750), Vector2(0, -50)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wtf51"]
+_data = {
+"RESET": SubResource("Animation_6x1dm"),
+"slide_in": SubResource("Animation_i1klb")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_1iapi"]
+font = ExtResource("15_xf2pp")
+font_size = 50
+font_color = Color(0, 0, 0, 1)
+
+[node name="Background" type="Camera2D"]
+script = ExtResource("1_iy03q")
+
+[node name="Background-day" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_6vhyh")
+script = ExtResource("3_qp1gn")
+
+[node name="bottom" type="Area2D" parent="."]
+position = Vector2(400, 370)
+script = ExtResource("5_rcji8")
+
+[node name="Sprite2D" type="Sprite2D" parent="bottom"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_l66jt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bottom"]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_x5gum")
+
+[node name="bottom2" type="Area2D" parent="."]
+position = Vector2(800, 370)
+script = ExtResource("7_55kqi")
+
+[node name="Sprite2D" type="Sprite2D" parent="bottom2"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_l66jt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bottom2"]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_x5gum")
+
+[node name="top" type="Area2D" parent="."]
+position = Vector2(400, -470)
+script = ExtResource("8_00phw")
+
+[node name="Sprite2D2" type="Sprite2D" parent="top"]
+rotation = 3.14159
+scale = Vector2(2, 2)
+texture = ExtResource("5_l66jt")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="top"]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_x5gum")
+
+[node name="top2" type="Area2D" parent="."]
+position = Vector2(800, -470)
+script = ExtResource("9_xrxqg")
+
+[node name="Sprite2D2" type="Sprite2D" parent="top2"]
+rotation = 3.14159
+scale = Vector2(2, 2)
+texture = ExtResource("5_l66jt")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="top2"]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_x5gum")
+
+[node name="Bird" parent="." instance=ExtResource("13_7kcok")]
+position = Vector2(-125, -40)
+
+[node name="Flap" type="AudioStreamPlayer2D" parent="Bird"]
+stream = ExtResource("10_xjuhe")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="Bird"]
+stream = ExtResource("11_8ebi1")
+
+[node name="Fall" type="AudioStreamPlayer2D" parent="Bird"]
+stream = ExtResource("12_svoja")
+
+[node name="Swoosh" type="AudioStreamPlayer2D" parent="Bird"]
+stream = ExtResource("13_6nso7")
+
+[node name="GameOver" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -275)
+scale = Vector2(2, 2)
+texture = ExtResource("14_q4p7w")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameOver"]
+libraries = {
+"": SubResource("AnimationLibrary_xwlt0")
+}
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -61.0
+offset_top = -20.0
+offset_right = -21.0
+offset_bottom = 20.0
+scale = Vector2(0.75, 0.75)
+
+[node name="Points" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 21.3333
+offset_top = -562.667
+offset_right = 148.333
+offset_bottom = -412.667
+text = "0"
+label_settings = SubResource("LabelSettings_7j76m")
+autowrap_mode = 2
+script = ExtResource("16_mpfno")
+
+[node name="GetPoint" type="AudioStreamPlayer2D" parent="Control/Points"]
+stream = ExtResource("17_i2l5t")
+
+[node name="Ground" type="Area2D" parent="."]
+position = Vector2(675, 399)
+scale = Vector2(2, 2)
+script = ExtResource("14_1j3a0")
+
+[node name="Base" type="Sprite2D" parent="Ground"]
+position = Vector2(-313.5, 0)
+texture = ExtResource("6_tkx8o")
+script = ExtResource("7_s8t76")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(-157, -22.75)
+shape = SubResource("RectangleShape2D_8bg2e")
+
+[node name="Base2" type="Sprite2D" parent="Ground"]
+texture = ExtResource("6_tkx8o")
+script = ExtResource("8_y5l8n")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Ground"]
+position = Vector2(-157, -22.75)
+shape = SubResource("RectangleShape2D_8bg2e")
+
+[node name="Scoreboard" type="Sprite2D" parent="."]
+position = Vector2(0, 750)
+scale = Vector2(4, 4)
+texture = ExtResource("18_208k2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Scoreboard"]
+libraries = {
+"": SubResource("AnimationLibrary_wtf51")
+}
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+
+[node name="Score" type="Label" parent="Control2"]
+layout_mode = 0
+offset_left = 141.0
+offset_top = -114.0
+offset_right = 195.0
+offset_bottom = -50.0
+text = "0"
+label_settings = SubResource("LabelSettings_1iapi")
+autowrap_mode = 2
+script = ExtResource("19_gqxxx")
+
+[node name="Control3" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 105.0
+offset_right = 145.0
+offset_bottom = 40.0
+scale = Vector2(4, 4)
+
+[node name="TextureButton" type="TextureButton" parent="Control3"]
+layout_mode = 0
+offset_left = -55.25
+offset_top = 11.75
+offset_right = 4.75
+offset_bottom = 51.75
+texture_normal = ExtResource("20_shb1h")
+
+[node name="Control4" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 115.0
+offset_top = -25.0
+offset_right = 155.0
+offset_bottom = 15.0
+
+[node name="BestScore" type="Label" parent="Control4"]
+layout_mode = 0
+offset_right = 54.0
+offset_bottom = 64.0
+text = "0"
+label_settings = SubResource("LabelSettings_1iapi")
+autowrap_mode = 2
+script = ExtResource("21_hxvwh")
+
+[node name="Message" type="Sprite2D" parent="."]
+position = Vector2(0, -50)
+scale = Vector2(2, 2)
+texture = ExtResource("17_t7ep4")
+
+[connection signal="body_entered" from="bottom" to="Bird" method="_on_bottom_body_entered"]
+[connection signal="body_entered" from="bottom2" to="Bird" method="_on_bottom_2_body_entered"]
+[connection signal="body_entered" from="top" to="Bird" method="_on_top_body_entered"]
+[connection signal="body_entered" from="top2" to="Bird" method="_on_top_2_body_entered"]
+[connection signal="body_entered" from="Ground" to="Bird" method="_on_ground_body_entered"]
+[connection signal="pressed" from="Control3/TextureButton" to="." method="_on_texture_button_pressed"]

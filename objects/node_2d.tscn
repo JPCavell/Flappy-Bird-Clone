@@ -1,0 +1,79 @@
+[gd_scene load_steps=9 format=3 uid="uid://b5b1r60g7btpu"]
+
+[ext_resource type="Script" path="res://objects/Bird.gd" id="1_2fcon"]
+[ext_resource type="Texture2D" uid="uid://cj7blhqfducxc" path="res://assets/spritesheet.png" id="1_7b2qd"]
+[ext_resource type="Script" path="res://objects/animation_player.gd" id="3_fgjow"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xpr87"]
+
+[sub_resource type="Animation" id="Animation_dcm5x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_skwlg"]
+resource_name = "Tap"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 2]
+}
+
+[sub_resource type="Animation" id="Animation_3fkg0"]
+resource_name = "flap"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ef5b4"]
+_data = {
+"RESET": SubResource("Animation_dcm5x"),
+"Tap": SubResource("Animation_skwlg"),
+"flap": SubResource("Animation_3fkg0")
+}
+
+[node name="Bird" type="CharacterBody2D"]
+script = ExtResource("1_2fcon")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(3.1, 2.5)
+shape = SubResource("CircleShape2D_xpr87")
+
+[node name="Spritesheet" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_7b2qd")
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Spritesheet"]
+libraries = {
+"": SubResource("AnimationLibrary_ef5b4")
+}
+script = ExtResource("3_fgjow")

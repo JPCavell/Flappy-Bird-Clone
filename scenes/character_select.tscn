@@ -1,0 +1,89 @@
+[gd_scene load_steps=9 format=3 uid="uid://dg0857yq1n42p"]
+
+[ext_resource type="Script" path="res://scenes/character_select.gd" id="1_7l0wf"]
+[ext_resource type="Texture2D" uid="uid://bm5asoswnx2le" path="res://assets/background-day.png" id="1_ktf3n"]
+[ext_resource type="Script" path="res://background_day.gd" id="2_x2kyk"]
+[ext_resource type="Texture2D" uid="uid://8uft4giijp4s" path="res://assets/base.png" id="5_a43hj"]
+[ext_resource type="Script" path="res://objects/base.gd" id="6_lc4ba"]
+[ext_resource type="Script" path="res://objects/base_2.gd" id="7_aiho3"]
+[ext_resource type="Texture2D" uid="uid://dpnq43smhpqdp" path="res://assets/flappy bird arrow.png" id="8_ann8e"]
+[ext_resource type="Texture2D" uid="uid://chjgl0dws3qpp" path="res://assets/Flappy Bird Sprites (2).png" id="10_vhi3v"]
+
+[node name="Character_Select" type="Camera2D"]
+script = ExtResource("1_7l0wf")
+
+[node name="Background-day" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_ktf3n")
+script = ExtResource("2_x2kyk")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 75.0
+offset_right = 40.0
+offset_bottom = 115.0
+scale = Vector2(0.5, 0.5)
+
+[node name="Base" type="Sprite2D" parent="Control"]
+position = Vector2(96, 648)
+scale = Vector2(4, 4)
+texture = ExtResource("5_a43hj")
+script = ExtResource("6_lc4ba")
+
+[node name="Base2" type="Sprite2D" parent="Control"]
+position = Vector2(1350, 648)
+scale = Vector2(4, 4)
+texture = ExtResource("5_a43hj")
+script = ExtResource("7_aiho3")
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 175.0
+offset_top = -50.0
+offset_right = 215.0
+offset_bottom = -10.0
+scale = Vector2(1.5, 1.5)
+
+[node name="TextureButton (right)" type="TextureButton" parent="Control2"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("8_ann8e")
+
+[node name="Control3" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -175.0
+offset_top = 40.0
+offset_right = -135.0
+offset_bottom = 80.0
+rotation = 3.14159
+scale = Vector2(1.5, 1.5)
+
+[node name="TextureButton (left)" type="TextureButton" parent="Control3"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("8_ann8e")
+
+[node name="play_button" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 104.0
+offset_right = 144.0
+offset_bottom = 40.0
+scale = Vector2(4, 4)
+
+[node name="TextureButton (title)" type="TextureButton" parent="play_button"]
+layout_mode = 0
+offset_left = -55.25
+offset_top = 11.75
+offset_right = 4.75
+offset_bottom = 51.75
+texture_normal = ExtResource("10_vhi3v")
+
+[connection signal="pressed" from="Control2/TextureButton (right)" to="." method="_on_texture_button_right_pressed"]
+[connection signal="pressed" from="Control3/TextureButton (left)" to="." method="_on_texture_button_left_pressed"]
+[connection signal="pressed" from="play_button/TextureButton (title)" to="." method="_on_texture_button_title_pressed"]
